@@ -30,32 +30,12 @@ var GroceryList = (props) => {
 //note the paraethesis implies that everything inside will be returned as one line
 // !!! note that listeners for events must be on the html elements, not the components
 // the onClick attribute below is an HTML attribute
-
-//Class Refactor
-//note that any reference to props/methods/etc must be done with this
-class GroceryItem extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      crossed: false
-    };
-  }
-  _onListItemClick () {
-    //console.log("Click heard on", this.props.item, "!");
-    //console.log("Heard Click!");
-    this.setState({
-      crossed: !this.state.crossed
-    });
-  }
-  render () {
-    var style = {
-      textDecoration: this.state.done ? 'line-through' : 'none'
-    }
-    return (
-      <li style={style} onClick={this._onListItemClick}>{this.props.item}</li>
-    );
-  }
-}
+var GroceryItem = (props) => {
+  var onListItemClick = (event) => {
+    console.log("Click heard on", props.item, "!");
+  };
+  return <li onClick={onListItemClick}>{props.item}</li>
+};
 
 
 ReactDOM.render(<App />, document.getElementById('app'));
